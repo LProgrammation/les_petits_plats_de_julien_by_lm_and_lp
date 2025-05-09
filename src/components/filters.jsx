@@ -34,6 +34,8 @@ export function FiltersComponent({ recipes, filteredRecipes, setFilteredRecipes,
 
     useEffect(() => {
         filterRecipesBySearchAndFilter()
+        
+
     }, [searchTerm, listTags])
     useEffect(() => {
         getIngredientsList()
@@ -57,10 +59,13 @@ export function FiltersComponent({ recipes, filteredRecipes, setFilteredRecipes,
 
         const filtered = recipes.filter(recipe => {
             // Vérifier la présence du searchTerm
-            const searchMatch = recipe.name.toLowerCase().includes(lowerSearchTerm) ||
-                                recipe.description.toLowerCase().includes(lowerSearchTerm) ||
-                                recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(lowerSearchTerm));
-
+            var searchMatch = []
+            if(searchTerm.length >= 3 ){
+                searchMatch = recipe.name.toLowerCase().includes(lowerSearchTerm) ||
+                                    recipe.description.toLowerCase().includes(lowerSearchTerm) ||
+                                    recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(lowerSearchTerm));
+            }
+            
             // Vérifier que TOUS les tags sont présents (dans nom, description, ingrédients)
             const tagsMatch = tagItems.every(tag =>
                 recipe.name.toLowerCase().includes(tag) ||
@@ -74,7 +79,7 @@ export function FiltersComponent({ recipes, filteredRecipes, setFilteredRecipes,
         });
         
         
-        if(searchTerm != "" || listTags.length > 0){
+        if(searchTerm.length >= 3 || listTags.length > 0){
             setFilteredRecipes(filtered);
         }
         else{

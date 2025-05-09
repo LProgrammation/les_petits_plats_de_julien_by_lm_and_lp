@@ -22,7 +22,7 @@ export function ListRecipesComponent({ searchTerm }) {
             <div className="recipesListDiv">
 
               {
-              (filteredRecipes.length == 0 && searchTerm == "") ?
+              (filteredRecipes.length == 0 && searchTerm.length < 3) ?
                 recipes.map((recipe) => <CardRecipeComponent recipe={recipe} />) 
               :  
                 filteredRecipes.map((recipe) => <CardRecipeComponent recipe={recipe} />) 
