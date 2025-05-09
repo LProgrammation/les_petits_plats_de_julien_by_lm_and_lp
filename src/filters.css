@@ -1,0 +1,107 @@
+.filtersComponent{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 5vw;
+    margin-top: 5vh ;
+    margin-bottom: 10vh;
+    gap: 30px;
+    
+    
+}
+
+.filtersList{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+
+#ingredientsDropdown, #devicesDropdown,#utensilsDropdown{
+    opacity: 0;
+    position: absolute;
+}
+
+.filter{
+    width: 17vw;
+    height: fit-content;
+    background-color: white;
+    padding: 10px;
+    border-radius: 1rem;
+}
+
+
+.checkboxDiv{
+    padding: 10px;
+}
+
+.checkboxDiv label{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    cursor: pointer;
+    width: 100%;
+    font-family: American Typewriter, serif;
+    justify-content: space-between;
+    font-size: 18px;
+
+}
+
+.filterContent{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.filterSearch{
+    width: calc(100% - 10px);
+    padding: 10px 0px 10px 10px;
+    font-family: American Typewriter, serif;
+    font-size: 18px;
+}
+
+i{
+    display: block;
+    margin-top: 1%;
+}
+
+.filterList{
+    max-height: 20vh;
+    overflow-y: scroll;
+}
+.filterList li{
+    text-decoration: none;
+    padding: 5px;
+    font-size: 18px;
+    list-style: none;
+    font-family: American Typewriter, serif;
+}
+
+.filterTagsList{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    
+}
+
+.filterTagsIngredients,
+.filterTagsDevices,
+.filterTagsUtensils{
+    list-style: none;
+    width: fit-content;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 0.5rem;
+}
+
+.filterTagsIngredients{
+    background-color: orange;
+}
+.filterTagsDevices{
+    background-color: cyan ;
+}
+.filterTagsUtensils{
+    background-color: greenyellow;
+}

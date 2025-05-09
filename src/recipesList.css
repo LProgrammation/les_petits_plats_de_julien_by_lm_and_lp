@@ -1,0 +1,7 @@
+.recipesListDiv{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 5vw;
+    gap: 30px;
+}
