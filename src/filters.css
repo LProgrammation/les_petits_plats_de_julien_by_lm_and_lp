@@ -33,6 +33,9 @@
     border-radius: 1rem;
 }
 
+.filterCountRecipes{
+    margin-top: 20px;
+}
 
 .checkboxDiv{
     padding: 10px;
@@ -83,7 +86,7 @@ i{
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    
+    margin-left: 5vw;
 }
 
 .filterTagsIngredients,
@@ -91,9 +94,22 @@ i{
 .filterTagsUtensils{
     list-style: none;
     width: fit-content;
-    padding: 10px;
+    padding: 15px;
     font-size: 14px;
     border-radius: 0.5rem;
+    display: flex;
+    flex-direction: row;
+}
+.filterTagsDeleteIcon{
+    display: none;
+    margin-left: 10px;
+    margin-top: 5px;
+    font-size: 10px;
+}
+.filterTagsIngredients:hover i,
+.filterTagsDevices:hover i,
+.filterTagsUtensils:hover i{
+    display: block;
 }
 
 .filterTagsIngredients{

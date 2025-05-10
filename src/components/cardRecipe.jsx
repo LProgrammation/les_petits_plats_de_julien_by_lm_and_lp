@@ -3,13 +3,17 @@ import "../cardRecipe.css"
 export function CardRecipeComponent({ recipe }) {
     const image = (recipe && recipe.image) ? recipe.image : "Recette01.jpg"
     const name = (recipe && recipe.name) ? recipe.name : "Default Recipe"
+    const recipeTime = (recipe && recipe.time) ? recipe.time : 0
     const ingredients = (recipe.ingredients) ? recipe.ingredients : []
     
     const description = recipe.description
     
     return (
         <article className="cardRecipe">
-            <img src={'/src/assets/recipes/' + image} alt={image} />
+            <div className="cardImageDiv">
+                <img src={'/src/assets/recipes/' + image} alt={image} />
+                <h2 className="recipesTiming">{recipeTime}Min</h2>
+            </div>
             <div className="cardContent">
                 <h3>{name}</h3>
 

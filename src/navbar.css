@@ -49,15 +49,42 @@
     text-align: center;
 }
 
-.navbarSearch {
+.navbarSearchDiv{
+    background-color: white;
+    display: flex;
+    flex-direction: row;
     position: absolute;
-    border: none;
-    padding: 25px;
-    border-radius: 1rem;
-    font-size: 20px;
-    width: 80%;
-    text-decoration: none;
-    outline: none;
     top: 55%;
-    left: 9.5%;
+    left: 7.5vw;
+    width: 80%;
+    padding: 10px;
+    border-radius: 1rem;
+}
+
+.navbarSearch {
+    display: block;
+    position: relative;
+    width: 95%;
+    padding: 20px;
+    font-size: 14px;
+    outline: none;
+    border: none;
+}
+
+.navbarSearchIcon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 5%;    
+    background-color: black;
+    border-radius: 0.5rem;
+    color: white;
+    transition: 0.5s ease;
+}
+
+.navbarSearchIcon:hover{
+    transform: scale(1.05);
+    background-color: rgb(221, 181, 1) ;
+    color: black;
 }

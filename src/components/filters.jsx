@@ -247,6 +247,9 @@ export function FiltersComponent({ recipes, filteredRecipes, setFilteredRecipes,
                                 </div>
                             </div>)}
                     </div>
+                    <div className="filterCountRecipes">
+                        <h3>{(filteredRecipes.length > 0 ) ? filteredRecipes.length : recipes.length} Recette(s)</h3>
+                    </div>
                 </div>
 
 
@@ -256,7 +259,7 @@ export function FiltersComponent({ recipes, filteredRecipes, setFilteredRecipes,
             <div className="filtersTagsDiv">
                     <ul className="filterTagsList">
                         {listTags.map((tag,index) => (
-                            <li onClick={()=>deleteFromTagsList(index)} className={"filterTags" + tag.listName}>{tag.item}</li>
+                            <li onClick={()=>deleteFromTagsList(index)} className={"filterTags" + tag.listName}>{tag.item} <i className="filterTagsDeleteIcon fi fi-br-cross"></i></li>
                         ))}
                     
                     </ul>
