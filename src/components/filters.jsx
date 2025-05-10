@@ -21,7 +21,7 @@ export function FiltersComponent({ recipes, filteredRecipes, setFilteredRecipes,
     const [searchUtensils, setSearchUtensils] = useState("")
 
 
-
+    //Fonction permettant de déterminer l'état des filtres (liste de filtres ouverte ou fermée)
     const handleIngredientsCheckboxChange = () => {
         setIngredientsIsOpen(!ingredientsIsOpen);
     };
@@ -32,11 +32,14 @@ export function FiltersComponent({ recipes, filteredRecipes, setFilteredRecipes,
         setUtensilsIsOpen(!utensilsIsOpen);
     };
 
+    // UseEffect permettant l'actualisation de la liste de recettes via la fonction filterRecipesBySearchAndFilter
     useEffect(() => {
         filterRecipesBySearchAndFilter()
         
 
     }, [searchTerm, listTags])
+
+    // UseEffect permettant l'actualisation des 3 listes de filtres lors de recherches d'un ingredients, appareil ou ustensiles
     useEffect(() => {
         getIngredientsList()
     }, [searchIngredients])
@@ -51,14 +54,14 @@ export function FiltersComponent({ recipes, filteredRecipes, setFilteredRecipes,
     
     
 
-
+    // Fonction permettant le filtrage de la liste de recettes via la barre de recherche de la navbar et des filtres d'ingrédients, appareils et ustensiles
     function filterRecipesBySearchAndFilter() {
         // Filtres sur la recherche de la navbar
         const lowerSearchTerm = searchTerm.toLowerCase();
         const tagItems = listTags.map(tag => tag.item.toLowerCase());
 
         const filtered = recipes.filter(recipe => {
-            // Vérifier la présence du searchTerm
+            
             var searchMatch = []
             if(searchTerm.length >= 3 ){
                 searchMatch = recipe.name.toLowerCase().includes(lowerSearchTerm) ||
@@ -66,7 +69,7 @@ export function FiltersComponent({ recipes, filteredRecipes, setFilteredRecipes,
                                     recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(lowerSearchTerm));
             }
             
-            // Vérifier que TOUS les tags sont présents (dans nom, description, ingrédients)
+            // Vérifier que tous les tags sont présents (nom, description, ingrédients)
             const tagsMatch = tagItems.every(tag =>
                 recipe.name.toLowerCase().includes(tag) ||
                 recipe.description.toLowerCase().includes(tag) ||
@@ -75,14 +78,16 @@ export function FiltersComponent({ recipes, filteredRecipes, setFilteredRecipes,
                 recipe.utensils.some(utensil => utensil.toLowerCase().includes(tag))
             );
 
-            return searchMatch && tagsMatch; // Filtre uniquement si searchTerm ET tous les tags correspondent
+            return searchMatch && tagsMatch; // Filtre uniquement si searchTerm et tous les tags correspondent
         });
         
         
         if(searchTerm.length >= 3 || listTags.length > 0){
+            // Dans le cas ou il y a une recherche ou des tags on définie les recettes sur la liste filtrée
             setFilteredRecipes(filtered);
         }
         else{
+            // Dans le cas contraire on définie sur la liste initiale
             setFilteredRecipes(recipes)
         }
         
@@ -92,7 +97,7 @@ export function FiltersComponent({ recipes, filteredRecipes, setFilteredRecipes,
     
 
     
-
+    // Fonction permettant l'actualisation de la liste des ingrédients en fonction de la liste de recettes actuelles ainsi que de la recherches d'ingrédients 
     function getIngredientsList() {
         var datas = []
 
@@ -110,7 +115,7 @@ export function FiltersComponent({ recipes, filteredRecipes, setFilteredRecipes,
         return(datas)
         
     }
-
+    // Fonction permettant l'actualisation de la liste des appareils en fonction de la liste de recettes actuelles ainsi que de la recherches d'appareils 
     function getDevicesList() {
         var datas = []
         const recipesArray = (filteredRecipes.length > 0) ? filteredRecipes : recipes         
@@ -125,6 +130,7 @@ export function FiltersComponent({ recipes, filteredRecipes, setFilteredRecipes,
             datas
         )
     }
+    // Fonction permettant l'actualisation de la liste des ustensiles en fonction de la liste de recettes actuelles ainsi que de la recherches d'ustensiles 
     function getUtensilsList() {
         var datas = []
         const recipesArray = (filteredRecipes.length > 0) ? filteredRecipes : recipes         
@@ -141,7 +147,7 @@ export function FiltersComponent({ recipes, filteredRecipes, setFilteredRecipes,
             datas
         )
     }
-
+    // Fonction permettant d'ajouter des élements de filtres dans la listes de tags (nom du filtres et catégorie du filtres (ingrédients, appareils et ustensiles))
     function addItemToTags(item, listName){
         listTags.push({ item: item, listName: listName });
     
@@ -150,12 +156,14 @@ export function FiltersComponent({ recipes, filteredRecipes, setFilteredRecipes,
         setListTags(datas);
         
     }
-    
+    // Fonction permettant la suppression d'un filtre de la liste des tags
     function deleteFromTagsList(index){
         const newList = listTags.filter((_, i) => i !== index);
        
         setListTags(newList);
     }
+
+    // Fonction permettant d'afficher la listes des ingrédients, appareils et ustensiles disponibles filtrer grâce au fonction de filtre et à la liste de recettes actuelle
     function listShow(list, listName) {
         return (
             <>
